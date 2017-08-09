@@ -3,6 +3,17 @@
 <pre>
     hello VM
     value1:$!{value1}
+
+    #foreach($coler in $strList)
+        Coler $!{foreach.index}/$!{foreach.count}:$!{coler}
+    #end
+
+    #foreach($key in $intMap.keySet())
+        Num $!{foreach.index}/$!{foreach.count}:$!{key} $intMap.get($key)
+    #end
+
+    $!{user.name}
+    $!{user.getAge()}
 </pre>
 </body>
 </html>

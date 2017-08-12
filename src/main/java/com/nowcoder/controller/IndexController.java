@@ -3,17 +3,15 @@ package com.nowcoder.controller;
 import com.nowcoder.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.RequestWrapper;
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/8/10.
@@ -44,6 +42,29 @@ public class IndexController {
         model.addAttribute("intMap",intMap);
         model.addAttribute("user",new User("xiaoming",25));
         return "news";
+    }
+
+    @RequestMapping("/request")
+    @ResponseBody
+    public String request(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+        StringBuilder sb = new StringBuilder();
+        Enumeration<String> headerNames=request.getHeaderNames();
+        while (headerNames.hasMoreElements()){
+            String name=headerNames.nextElement();
+            sb.append(name+":"+request.getHeader(name)+"<br>");
+        }
+        for (Cookie cookie : request.getCookies()) {
+            sb.append("Cookie:");
+            sb.append(cookie.getName()+":"+cookie.getValue()+"<br>");
+        }
+        return sb.toString();
+    }
+
+    @RequestMapping("/response")
+    @ResponseBody
+    public String response(@CookieValue(value = "nowcoderid",defaultValue = "a") String nowcoderid ,@RequestParam(value = "key",defaultValue = "key") String key,@RequestParam(value = "value",defaultValue = "value")String value,HttpServletResponse response){
+        response.addCookie(new Cookie(key,value));
+        return "nowcoderid from cookie:"+nowcoderid;
     }
 }
 

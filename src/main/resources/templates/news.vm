@@ -14,6 +14,10 @@
 
     $!{user.name}
     $!{user.getAge()}
+
+    #set($title="this is title")
+    Include:#include("header.vm")<br>
+    Parse:#parse("header.vm")
 </pre>
 </body>
 </html>

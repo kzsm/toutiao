@@ -1,12 +1,22 @@
 package com.nowcoder.model;
 
-/**
- * Created by Administrator on 2017/8/10.
- */
+
 public class User {
-    public User(String name, int age) {
+    private int id;
+    private String name;
+    private String password;
+    private String salt;
+    private String headUrl;
+
+    public User() {
+
+    }
+
+    public User(String name) {
         this.name = name;
-        this.age = age;
+        this.password = "";
+        this.salt = "";
+        this.headUrl = "";
     }
 
     public String getName() {
@@ -17,17 +27,35 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    private String name;
-    private int age;
+    public String getSalt() {
+        return salt;
+    }
 
-    public User() {
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getHeadUrl() {
+        return headUrl;
+    }
+
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

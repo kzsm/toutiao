@@ -52,7 +52,7 @@ public class IndexController {
         }
         model.addAttribute("strList", strList);
         model.addAttribute("intMap", intMap);
-        model.addAttribute("user", new User("xiaoming", 25));
+        //model.addAttribute("user", new User("xiaoming", 25));
         return "news";
     }
 

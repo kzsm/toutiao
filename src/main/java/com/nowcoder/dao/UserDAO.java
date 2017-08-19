@@ -3,7 +3,9 @@ package com.nowcoder.dao;
 import com.nowcoder.model.User;
 import org.apache.ibatis.annotations.*;
 
-
+/**
+ * Created by Administrator on 2017/8/15.
+ */
 @Mapper
 public interface UserDAO {
     String TABLE_NAME = "user";
